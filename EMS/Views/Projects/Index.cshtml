@@ -1,0 +1,42 @@
+﻿@model List<Project>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<a asp-action="Create" class="btn btn-danger">New</a>
+<br /><br />
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Project Name</td>
+            <td>Start Date</td>
+            @if (ViewBag.IsAdmin)
+            {
+                <td>Edit</td>
+            }
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProjectName</td>
+                <td>@item.StartDate</td>
+                @if (ViewBag.IsAdmin)
+                {
+
+                    <td><a asp-action="Edit" asp-route-id="@item.ProjectID">Edit</a></td>
+                }
+            </tr>
+        }
+
+
+
+    </tbody>
+</table>
+
