@@ -1,3 +1,4 @@
+using EMS.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +27,7 @@ namespace EMS
         {
             services.AddControllersWithViews();
             services.AddDbContextPool<Models.AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("constr")));
+            services.AddScoped<IDataService, DataService>();
 
 
         }

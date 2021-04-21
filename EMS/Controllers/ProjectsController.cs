@@ -1,4 +1,5 @@
 ﻿using EMS.Models;
+using EMS.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -11,12 +12,12 @@ namespace EMS.Controllers
 {
     public class ProjectsController : Controller
     {
-        private readonly AppDbContext _db;
+        private readonly IDataService _ds;
         private readonly IConfiguration _config;
         private readonly ILogger _log;
-        public ProjectsController(AppDbContext db, IConfiguration config, ILogger<ProjectsController> log)
+        public ProjectsController(IDataService ds, IConfiguration config, ILogger<ProjectsController> log)
         {
-            _db = db;
+            _ds = ds;
             _config = config;
             _log = log;
         }
@@ -26,13 +27,14 @@ namespace EMS.Controllers
         {
             _log.LogInformation("Starting Index");
 
+            var localKey = _config["local_Key"];
             var key = _config["api_key"];
             var smtp = _config["smtp:host"];
 
             ViewBag.IsAdmin = false;
 
 
-            var projects = _db.Projects.ToList();
+            var projects = _ds.GetProjects();
 
             if (projects == null)
             {
@@ -49,8 +51,7 @@ namespace EMS.Controllers
         public IActionResult Create(Project project)
         {
 
-            _db.Add(project);
-            _db.SaveChanges();
+            _ds.SaveProjext(project);
 
             return RedirectToAction("Index");
         }
