@@ -9,6 +9,6 @@ namespace EMS.Services
     public interface IDataService
     {
         List<Project> GetProjects();
-        Project SaveProjext(Project project);
+        Project SaveProject(ProjectViewModel project);
     }
 }

@@ -21,12 +21,19 @@ namespace EMS.Services
         public List<Project> GetProjects() => _projs;
        
 
-        public Project SaveProjext(Project project)
+        public Project SaveProject(ProjectViewModel project)
         {
             project.ProjectID = _projs.Max(m => m.ProjectID) + 1;
-            _projs.Add(project);
 
-            return project;
+            var newProject = new Project
+            {
+                ProjectName = project.ProjectName,
+                StartDate = project.StartDate
+            };
+
+            _projs.Add(newProject);
+
+            return newProject;
         }
     }
 }

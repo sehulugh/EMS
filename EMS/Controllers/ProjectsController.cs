@@ -48,10 +48,10 @@ namespace EMS.Controllers
         public IActionResult Create() => View();
         
         [HttpPost]
-        public IActionResult Create(Project project)
+        public IActionResult Create(ProjectViewModel project)
         {
 
-            _ds.SaveProjext(project);
+            _ds.SaveProject(project);
 
             return RedirectToAction("Index");
         }

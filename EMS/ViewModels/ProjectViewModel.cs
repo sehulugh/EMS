@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EMS.Models
 {
-    public class Project
+    public class ProjectViewModel
     {
         public int ProjectID { get; set; }
    
@@ -14,8 +15,6 @@ namespace EMS.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime StartDate { get; set; }
-        public byte[] ProjectPlan { get; set; }
-        public string FileName { get; set; }
-        public ICollection<EmployeeProject> EmployeeProjects { get; set; }
+        public IFormFile Document { get; set; }
     }
 }
