@@ -31,7 +31,7 @@ namespace EMS.Controllers
             var key = _config["api_key"];
             var smtp = _config["smtp:host"];
 
-            ViewBag.IsAdmin = false;
+            ViewBag.IsAdmin = true;
 
 
             var projects = _ds.GetProjects();

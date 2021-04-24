@@ -6,6 +6,7 @@
 <h1>Index</h1>
 
 <a asp-action="Create" class="btn btn-danger">New</a>
-<br /><br />
+<br />
+<br />
 
-@await Html.PartialAsync("_ProjectTable", Model, new ViewDataDictionary(ViewData) { { "iAdmin", ViewBag.IsAdmin } })
+@await Html.PartialAsync("_ProjectTable", Model, new ViewDataDictionary(ViewData) { })

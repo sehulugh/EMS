@@ -1,17 +1,12 @@
 ﻿@model List<Project>
 
-@{ 
-    bool admin = (bool)ViewData["iAdmin"];
-}
-
-
 <table class="table table-bordered">
     <thead>
         <tr>
             <td>Project Name</td>
             <td>Start Date</td>
 
-            @if (admin)
+            @if ((bool)ViewData["IsAdmin"])
             {
                 <td>Edit</td>
             }
@@ -26,14 +21,11 @@
                 <td>@item.ProjectName</td>
                 <td>@item.StartDate</td>
 
-                @if (admin)
+                @if ((bool)ViewData["IsAdmin"])
                 {
                     <td><a asp-action="Edit" asp-route-id="@item.ProjectID">Edit</a></td>
                 }
             </tr>
         }
-
-
-
     </tbody>
 </table>
